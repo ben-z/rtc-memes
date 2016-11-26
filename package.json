@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "bundle": "browserify web/viewmeme.js -o web/viewmeme-bundle.js",
+    "bundle": "npm run bundle-main && npm run bundle-viewmeme",
+    "bundle-main": "browserify web/main.js -o web/main-bundle.js",
+    "bundle-viewmeme": "browserify web/viewmeme.js -o web/viewmeme-bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
