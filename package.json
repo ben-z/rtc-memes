@@ -1,0 +1,24 @@
+{
+  "name": "rtc-memes",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ben-z/rtc-memes.git"
+  },
+  "author": "",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/ben-z/rtc-memes/issues"
+  },
+  "homepage": "https://github.com/ben-z/rtc-memes#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "rtc": "^3.4.0"
+  }
+}
