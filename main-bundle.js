@@ -1,3 +1,4 @@
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 // generate a meme and store in LocalStorage
 
 var canvas = document.getElementById("meme-canvas");
@@ -12,9 +13,8 @@ canvas.addEventListener("mousemove", function(e){
     return;
   }
   
-  var mX = e.clientX;
-  var mY = e.clientY;
-
+  var mX = e.clientX - $("#meme-canvas").offset().left;
+  var mY = e.clientY - $("#meme-canvas").offset().top;
   
   ctx.fillStyle = "green";
   ctx.fillRect(mX, mY, 10, 10);
@@ -43,10 +43,12 @@ function create_meme() {
   let uuid = guid();
   localStorage.setItem("rtc-meme-" + uuid, data);
 
-  let url = window.location.protocol + '//' + window.location.host + "/viewmeme.html?meme_uuid=" + uuid;
+  let url = window.location.protocol + '//' + window.location.host + window.location.pathname + "/viewmeme.html?meme_uuid=" + uuid;
 
   let meme_link = document.getElementById('meme-url');
   meme_link.href = url;
   meme_link.innerHTML = url;
   console.log(url);
 }
+
+},{}]},{},[1]);
