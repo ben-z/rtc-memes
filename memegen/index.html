@@ -1,38 +1,92 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Gen</title>
+	<title>Gen</title>
 </head>
+
 <body>
 
-    <p>Canvas to fill:</p>
-<canvas id="myCanvas" width="450" height="300"
-style="border:1px solid #d3d3d3;"></canvas>
-<p><button onclick="myCanvas()">Generate</button></p>    
-    
-    <img id="blue" src="source/1.png" alt="bsod" width="120" height="70">
-    <img id="nut" src="template/2.png" alt="bsod" width="120" height="70">
-    
-<script>
+	<p>Canvas to fill:</p>
+	<canvas id="myCanvas" width="450" height="300" style="border:1px solid #d3d3d3;"></canvas>
+	<p><button onclick="fook()">Generate</button></p>
 
-    
-function myCanvas() {
-    var c=document.getElementById("myCanvas");
-    var ctx=c.getContext("2d");
-    var imageObj1 = new Image();
-    var imageObj2 = new Image();
-    imageObj1.src = "source/1.png"
-    imageObj1.onload = function() {
-   ctx.drawImage(imageObj1, 0, 0, 450, 101);
-   imageObj2.src = "template/2.png";
-   imageObj2.onload = function() {
-      ctx.drawImage(imageObj2, 0, 0, 450, 300);
-      var img = c.toDataURL("image/png");
-      document.write('<img src="' + img + '" width="450" height="300"/>');
-   }
-};
-}
-</script>
+	<img id="blue" src="source/22.png" alt="bsod" width="120" height="70">
+	<img id="nut" src="source/1.png" alt="bsod" width="120" height="70">
+
+	<script>
+		class Template {
+			constructor(templateSource, numOfSource, x1 = 0, y1 = 0, width1 = 0, height1 = 0, src1 = "",
+				x2 = 0, y2 = 0, width2 = 0, height2 = 0, src2 = "",
+				x3 = 0, y3 = 0, width3 = 0, height3 = 0, src3 = "",
+				x4 = 0, y4 = 0, width4 = 0, height4 = 0, src4 = "") {
+
+				this.templateSource = templateSource;
+				this.numOfSource = numOfSource;
+				this.x1 = x1;
+				this.y1 = y1;
+				this.x2 = x2;
+				this.y2 = y2;
+				this.x3 = x3;
+				this.y3 = y3;
+				this.x4 = x4;
+				this.y4 = y4;
+				this.width1 = width1;
+				this.width2 = width2;
+				this.width3 = width3;
+				this.width4 = width4;
+				this.height1 = height1;
+				this.height2 = height2;
+				this.height3 = height3;
+				this.height4 = height4;
+				this.src1 = src1;
+				this.src2 = src2;
+				this.src3 = src3;
+				this.src4 = src4;
+			}
+
+		}
+
+		function fook() {
+			var a = [];	
+			var i = Math.floor((Math.random() * 230) + 1);
+			a[0] = new Template("template/1.png", 1, 49, 146, 142, 84, "source/" + i + ".png");
+			//a[1] = new Template();
+			var template = a[0];
+			myCanvas(template);
+		}
+
+			function myCanvas(template) {
+				var c = document.getElementById("myCanvas");
+				var ctx = c.getContext("2d");
+				var imageObj1 = new Image();
+				var imageObj2 = new Image();
+				var imageObj3 = new Image();
+				var imageObj4 = new Image();
+
+				var tempSrc = new Image();
+				
+				imageObj1.src = template.src1;
+				imageObj2.src = template.src2;
+				imageObj3.src = template.src3;
+				imageObj4.src = template.src4; 
+				tempSrc.src = template.templateSource;
+
+				imageObj1.onload = function() {
+					ctx.drawImage(imageObj1, template.x1, template.y1, template.width1, template.height1);
+					ctx.drawImage(imageObj1, template.x1, template.y1, template.width2, template.height2);
+					ctx.drawImage(imageObj1, template.x1, template.y1, template.width3, template.height3);
+					ctx.drawImage(imageObj1, template.x1, template.y1, template.width4, template.height4);
+					tempSrc.onload = function() {
+						ctx.drawImage(tempSrc, 0, 0, 450, 300);
+						//var img = c.toDataURL("image/png");
+						//document.write('<img src="' + img + '" width="450" height="300"/>');
+					}
+				};
+			}
+
+	</script>
 
 </body>
+
 </html>
