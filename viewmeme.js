@@ -29,6 +29,7 @@ let meme_base64 = localStorage.getItem('rtc-meme-' + meme_uuid);
 if (meme_base64) {
   renderImage();
   localStorage.removeItem('rtc-meme-' + meme_uuid);
+  console.log('removed rtc-meme-'+meme_uid);
 }
 
 // WebRTC
