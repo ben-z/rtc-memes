@@ -23,7 +23,6 @@ if (meme_base64) {
 }
 
 // WebRTC
-let channels = [];
 // rtc-quickconnect requires a signalling server location and a room name.
 let quickConnectMod = require('rtc-quickconnect');
 let quickConnectObj = quickConnectMod('https://switchboard.rtc.io/', { room: meme_uuid })
@@ -35,7 +34,6 @@ let quickConnectObj = quickConnectMod('https://switchboard.rtc.io/', { room: mem
 quickConnectObj.createDataChannel('shared-text');
 quickConnectObj.on('channel:opened:shared-text', function (id, channel) {
   console.log('opened data channel with id', id);
-  channels.push(channel);
 
   if (meme_base64) {
     console.log('sending meme to another peer');
