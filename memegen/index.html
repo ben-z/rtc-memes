@@ -11,8 +11,6 @@
 	<canvas id="myCanvas" width="450" height="300" style="border:1px solid #d3d3d3;"></canvas>
 	<p><button onclick="fook()">Generate</button></p>
 
-	<img id="blue" src="source/22.png" alt="bsod" width="120" height="70">
-	<img id="nut" src="source/1.png" alt="bsod" width="120" height="70">
 
 	<script>
 		class Template {
@@ -94,11 +92,36 @@
 			var a = [];	
 			var i = Math.floor((Math.random() * 230) + 1);
 			var j = Math.floor((Math.random() * 230) + 1);
+			var k = Math.floor((Math.random() * 43) + 1);
+
 			a[0] = new Template("template/1.png", 1, 49, 146, 142, 84, "source/" + i + ".png");
 			a[1] = new Template("template/2.png", 1, 0, 0, 450, 100, "source/" + i + ".png");
 			a[2] = new Template("template/3.png", 2, 0, 0, 450/2, 300/2 - 3, "source/" + i + ".png", 
 													 0	, 300/2 + 3, 450/2, 300/2, "source/" + j + ".png");
-			var template = a[2];
+
+			a[3] = new Template("template/4.png", 1, 450/2, 0, 450/2, 300/2, "source/" + i + ".png");
+			a[4] = new Template("template/5.png", 1, 275, 60, 125, 125, "source/" + i + ".png");
+			a[5] = new Template("template/6.png", 1, 215, 150, 200, 145, "source/" + j + ".png");
+			a[6] = new Template("template/7.png", 1, 158, 188, 102, 98, "source/" + i + ".png");
+			// 6 image
+			//a[7] = new Template("template/8.png", 1, 215, 150, 200, 145, "source/" + i + ".png");
+			a[7] = new Template("template/9.png", 1, 0, 0, 450, 209, "source/" + j + ".png");
+
+			a[8] = new Template("template/10.png", 1, 253, 217, 145, 69, "source/" + i + ".png");
+			a[9] = new Template("template/11.png", 1, 450/2 - 10, 0, 234, 158, "source/" + i + ".png");
+			a[10] = new Template("template/12.png", 1, 21, 62, 415, 220, "source/" + i + ".png");
+			a[11] = new Template("template/13.png", 1, 21, 62, 390, 185, "source/" + i + ".png");
+			a[12] = new Template("template/14.png", 1, 21, 62, 370, 165, "source/" + i + ".png");
+			a[13] = new Template("template/15.png", 1, 230, 167, 208, 130, "source/" + j + ".png");
+
+			a[14] = new Template("template/16.png", 2, 450/2 - 5, 1, 450/2, 300/2 , "source/" + i + ".png", 
+													   450/2 - 5, 300/2 + 3, 450/2, 300/2 -3, "source/" + j + ".png");
+
+
+
+
+			// put k here
+			var template = a[14];
 
 			myCanvas(template);
 		}
