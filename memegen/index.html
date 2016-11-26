@@ -93,12 +93,38 @@
 
 			var a = [];	
 			var i = Math.floor((Math.random() * 230) + 1);
-			var j = Math.floor((Math.random() * 230) + 1);
+			var j = Math.floor((Math.random() * 230) + 1); 
+			var k = Math.floor((Math.random() * 230) + 1);
+            
 			a[0] = new Template("template/1.png", 1, 49, 146, 142, 84, "source/" + i + ".png");
 			a[1] = new Template("template/2.png", 1, 0, 0, 450, 100, "source/" + i + ".png");
 			a[2] = new Template("template/3.png", 2, 0, 0, 450/2, 300/2 - 3, "source/" + i + ".png", 
-													 0	, 300/2 + 3, 450/2, 300/2, "source/" + j + ".png");
-			var template = a[2];
+                0	, 300/2 + 3, 450/2, 300/2, "source/" + j + ".png");
+			
+            a[28] = new Template("template/28.png", 1, 20, 20, 350, 160, "source/" + i + ".png");
+            a[29] = new Template("template/29.png", 1, 0, 400/3 - 40, 450, 100, "source/" + i + ".png");
+             a[30] = new Template("template/30.png", 1, 0, 100, 450, 150, "source/" + i + ".png");
+            a[31] = new Template("template/31.png", 1, 0, 300/2, 450/2, 300/2, "source/" + i + ".png");
+            a[32] = new Template("template/32.png", 2, 0, 0, 450/2, 300/2 - 3, "source/" + i + ".png", 
+                0	, 300/2 + 3, 450/2, 300/2, "source/" + j + ".png");
+            a[33] = new Template("template/33.png", 1, 0, 0, 450, 200, "source/" + i + ".png");
+            a[34] = new Template("template/34.png", 1, 310, 100, 140, 140, "source/" + i + ".png");
+            a[35] = new Template("template/35.png", 1, 0, 0, 450, 250, "source/" + i + ".png");
+            a[36] = new Template("template/36.png", 1, 0, 0, 450, 235, "source/" + i + ".png");
+            a[37] = new Template("template/37.png", 1, 450/2, 300/2 + 20, 220, 125, "source/" + i + ".png");
+            a[38] = new Template("template/38.png", 1, 140, 20, 170, 220, "source/" + i + ".png");
+            a[39] = new Template("template/39.png", 2, 450/2, 0, 450/2, 300/3, "source/" + i + ".png", 
+                450/2, 300/3, 450/2, 300/3, "source/" + j + ".png",
+             450/2	, 600/3, 450/2, 300/3, "source/" + k + ".png");
+            a[40] = new Template("template/40.png", 1, 20, 50, 350, 200, "source/" + i + ".png");
+            a[41] = new Template("template/41.png", 1, 0, 300/2, 265, 300/2, "source/" + i + ".png");
+            a[42] = new Template("template/42.png", 1, 0, 300/3, 450, 300/3, "source/" + i + ".png");
+            a[43] = new Template("template/43.png", 2, 0, 0, 450, 300/4 + 3 - 3, "source/" + i + ".png", 
+                0	, 300*2/4, 450, 300/4, "source/" + j + ".png");
+            
+            
+            
+            var template = a[43];
 
 			myCanvas(template);
 		}
