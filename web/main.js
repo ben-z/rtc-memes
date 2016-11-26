@@ -21,21 +21,27 @@ quickConnectObj.createDataChannel('shared-text');
 quickConnectObj.on('channel:opened:shared-text', function (id, dataChannel) {
   bindDataEvents(dataChannel);
 });
+let channels = [];
 
 console.log("created data channels");
 function bindDataEvents(channel) {
+  channels.push(channel);
   // Receive message
   channel.onmessage = function (evt) {
     console.log('evt', evt.data);
     messageWindow.value = messageWindow.value + "\n" +  JSON.parse(evt.data).value;
   };
 
-  // Send message
-  messageWindow.onkeyup = function (evt) {
+}
+
+
+// Send message
+messageWindow.onkeyup = function (evt) {
+  channels.forEach(function(channel) {
     channel.send(
       JSON.stringify({
         value: this.value,
         id: 'david'
       }));
-  };
-}
+  });
+};
