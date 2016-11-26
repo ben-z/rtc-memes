@@ -11,6 +11,7 @@ function getParameterByName(name, url) {
 }
 
 function renderImage() {
+  document.getElementById('data_container').innerHTML = meme_base64;
   console.log('Rendering image:', meme_base64);
 }
 
@@ -30,9 +31,9 @@ let quickConnectObj = quickConnectMod('https://switchboard.rtc.io/', { room: mem
     console.log('we have a new connection to: ' + id);
 
     // Create a data channel and bind to it's events
-    quickConnectObj.createDataChannel('shared-meme');
-    quickConnectObj.on('channel:opened:shared-meme', function (id, dataChannel) {
-      console.log('opened data channel')
+    quickConnectObj.createDataChannel('shared-text');
+    quickConnectObj.on('channel:opened:shared-text', function (id, dataChannel) {
+      console.log('opened data channel');
       bindDataEvents(dataChannel);
     });
 
