@@ -27,11 +27,15 @@ function bindDataEvents(channel) {
   // Receive message
   channel.onmessage = function (evt) {
     console.log('evt', evt.data);
-    messageWindow.value = evt.data;
+    messageWindow.value = messageWindow.value + "\n" +  JSON.parse(evt.data).value;
   };
 
   // Send message
   messageWindow.onkeyup = function (evt) {
-      channel.send(this.value);
+    channel.send(
+      JSON.stringify({
+        value: this.value,
+        id: 'david'
+      }));
   };
 }
