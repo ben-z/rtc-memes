@@ -1,0 +1,15 @@
+Asssuming canvas size is W=450, h=300
+
+1 (nutbutton)
+numimages:1 
+x1: 49
+y1: 146
+w1: 142 
+h1: 84
+
+2
+numimages:1 
+x1:
+y1:
+w1:
+h1:
