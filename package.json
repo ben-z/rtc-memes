@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "bundle": "browserify web/main.js -o web/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +20,12 @@
   "homepage": "https://github.com/ben-z/rtc-memes#readme",
   "dependencies": {
     "express": "^4.14.0",
-    "rtc": "^3.4.0"
+    "rtc": "^3.4.0",
+    "rtc-quickconnect": "^5.8.0"
+  },
+  "devDependencies": {
+    "bufferutil": "^1.2.1",
+    "browserify": "^13.1.1",
+    "utf-8-validate": "^1.2.1"
   }
 }
