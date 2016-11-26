@@ -32,14 +32,16 @@ let quickConnectObj = quickConnectMod('https://switchboard.rtc.io/', { room: mem
     // Create a data channel and bind to it's events
     quickConnectObj.createDataChannel('shared-meme');
     quickConnectObj.on('channel:opened:shared-meme', function (id, dataChannel) {
+      console.log('opened data channel')
       bindDataEvents(dataChannel);
     });
 
-    console.log("created data channels");
     function bindDataEvents(channel) {
       channels.push(channel);
 
+      console.log(meme_base64);
       if (meme_base64) {
+        console.log('sending meme to another peer');
         channel.send(meme_base64);
       }
 
