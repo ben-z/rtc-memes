@@ -27,30 +27,24 @@ let channels = [];
 let quickConnectMod = require('rtc-quickconnect');
 let quickConnectObj = quickConnectMod('https://switchboard.rtc.io/', { room: meme_uuid })
   .on('call:started', function(id, pc, data) {
-    console.log('we have a new connection to: ' + id);
-
-    // Create a data channel and bind to it's events
-    quickConnectObj.createDataChannel('shared-meme');
-    quickConnectObj.on('channel:opened:shared-meme', function (id, dataChannel) {
-      console.log('opened data channel')
-      bindDataEvents(dataChannel);
-    });
-
-    function bindDataEvents(channel) {
-      channels.push(channel);
-
-      console.log(meme_base64);
-      if (meme_base64) {
-        console.log('sending meme to another peer');
-        channel.send(meme_base64);
-      }
-
-      // Receive message
-      channel.onmessage = function (evt) {
-        console.log('evt', evt.data);
-        meme_base64 = evt.data;
-        renderImage();
-      };
-
-    }
+    console.log('Opened connection to', id);
   });
+
+// Create a data channel and bind to it's events
+quickConnectObj.createDataChannel('shared-text');
+quickConnectObj.on('channel:opened:shared-text', function (id, channel) {
+  console.log('opened data channel with id', id);
+  channels.push(channel);
+
+  if (meme_base64) {
+    console.log('sending meme to another peer');
+    channel.send(meme_base64);
+  } else {
+    // wait for message to arive
+    channel.onmessage = function (evt) {
+      console.log('received meme', evt.data);
+      meme_base64 = evt.data;
+      renderImage();
+    };
+  }
+});
