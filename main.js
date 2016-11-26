@@ -123,7 +123,6 @@ function myCanvas(template) {
 
 
 function genMeme() {
-
   var a = [];	
   var i = Math.floor((Math.random() * 278) + 1);
   var j = Math.floor((Math.random() * 278) + 1); 
@@ -201,3 +200,5 @@ function genMeme() {
 }
 
 
+
+document.getElementById('genMeme').onclick = genMeme;
