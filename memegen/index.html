@@ -1,10 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
+<title>Gen</title>
 </head>
 <body>
 
+    <p>Canvas to fill:</p>
+<canvas id="myCanvas" width="450" height="300"
+style="border:1px solid #d3d3d3;"></canvas>
+<p><button onclick="myCanvas()">Generate</button></p>    
+    
+    <img id="blue" src="source/bluescreenofdeath.jpg" alt="bsod" width="120" height="70">
+    <img id="nut" src="source/nut-button.png" alt="bsod" width="120" height="70">
+    
+<script>
+
+    
+function myCanvas() {
+    var c=document.getElementById("myCanvas");
+    var ctx=c.getContext("2d");
+    var imageObj1 = new Image();
+    var imageObj2 = new Image();
+    imageObj1.src = "source/bluescreenofdeath.jpg"
+    imageObj1.onload = function() {
+   ctx.drawImage(imageObj1, 49, 146, 142, 84);
+   imageObj2.src = "source/nut-button.png";
+   imageObj2.onload = function() {
+      ctx.drawImage(imageObj2, 0, 0, 450, 300);
+      var img = c.toDataURL("image/png");
+      document.write('<img src="' + img + '" width="450" height="300"/>');
+   }
+};
+}
+</script>
 
 </body>
 </html>
