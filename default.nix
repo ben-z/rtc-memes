@@ -5,5 +5,6 @@ stdenv.mkDerivation rec {
   buildInputs = [
     nodejs-6_x
     ag
+    ngrok
   ];
 }
