@@ -33,7 +33,7 @@ if (meme_base64) {
 // WebRTC
 // rtc-quickconnect requires a signalling server location and a room name.
 let quickConnectMod = require('rtc-quickconnect');
-let quickConnectObj = quickConnectMod('http://138.197.142.225:8080/', { room: meme_uuid })
+let quickConnectObj = quickConnectMod('https://138.197.142.225:8080/', { room: meme_uuid })
   .on('call:started', function(id, pc, data) {
     console.log('Opened connection to', id);
   });
