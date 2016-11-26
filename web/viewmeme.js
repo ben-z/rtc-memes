@@ -1,17 +1,25 @@
 function getParameterByName(name, url) {
-    if (!url) {
-      url = window.location.href;
-    }
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  if (!url) {
+    url = window.location.href;
+  }
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
 function renderImage() {
-  document.getElementById('data_container').innerHTML = meme_base64;
+  let canvas = document.getElementById('meme-canvas');
+  let ctx = canvas.getContext('2d')
+
+  let image = new Image();
+  image.onload = function () {
+    ctx.drawImage(image, 0, 0);
+  }
+  image.src = meme_base64;
+
   console.log('Rendering image:', meme_base64);
 }
 
@@ -23,7 +31,6 @@ if (meme_base64) {
 }
 
 // WebRTC
-let channels = [];
 // rtc-quickconnect requires a signalling server location and a room name.
 let quickConnectMod = require('rtc-quickconnect');
 let quickConnectObj = quickConnectMod('https://switchboard.rtc.io/', { room: meme_uuid })
@@ -35,7 +42,6 @@ let quickConnectObj = quickConnectMod('https://switchboard.rtc.io/', { room: mem
 quickConnectObj.createDataChannel('shared-text');
 quickConnectObj.on('channel:opened:shared-text', function (id, channel) {
   console.log('opened data channel with id', id);
-  channels.push(channel);
 
   if (meme_base64) {
     console.log('sending meme to another peer');
