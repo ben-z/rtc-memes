@@ -1,41 +1,20 @@
-// rtc-quickconnect requires a signalling server location and a room name.
-var quickConnectMod = require('rtc-quickconnect');
-var quickConnectObj = quickConnectMod('https://switchboard.rtc.io/', { room: 'unicorn-lsdjfflajsdflkajdsklfjalsdj' })
-    .on('call:started', function(id, pc, data) {
-      console.log('we have a new connection to: ' + id);
-    });;
+// generate a meme and store in LocalStorage
 
-console.log("before messageWindow");
-// Create the text area for chatting
-var messageWindow = document.createElement('textarea');
-messageWindow.rows = 20;
-messageWindow.cols = 80;
+let data = "Yoooo";
 
-var bodyElement = document.getElementsByTagName('body')[0];
-bodyElement.appendChild(messageWindow);
-
-console.log("after messageWindow");
-
-// Create a data channel and bind to it's events
-quickConnectObj.createDataChannel('shared-text');
-quickConnectObj.on('channel:opened:shared-text', function (id, dataChannel) {
-  bindDataEvents(dataChannel);
-});
-
-console.log("created data channels");
-function bindDataEvents(channel) {
-  // Receive message
-  channel.onmessage = function (evt) {
-    console.log('evt', evt.data);
-    messageWindow.value = messageWindow.value + "\n" +  JSON.parse(evt.data).value;
-  };
-
-  // Send message
-  messageWindow.onkeyup = function (evt) {
-    channel.send(
-      JSON.stringify({
-        value: this.value,
-        id: 'david'
-      }));
-  };
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+    s4() + '-' + s4() + s4() + s4();
 }
+
+let uuid = guid();
+localStorage.setItem("rtc-meme-" + uuid, data);
+
+let url = window.location.protocol + '//' + window.location.host + "/viewmeme.html?meme_uuid=" + uuid;
+
+console.log(url);
