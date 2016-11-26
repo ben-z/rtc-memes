@@ -1,7 +1,29 @@
+function getParameterByName(name, url) {
+    if (!url) {
+      url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+let meme_uuid = getParameterByName('meme_uuid');
+let meme_base64 = localStorage.getItem(mem_uuid);
+
+if (meme_base64) {
+	// render the image, and serve it on webrtc
+} else {
+	// this is a client and we need to get the image from other webrtc cliens
+}
+
+// WebRTC
 let channels = [];
 // rtc-quickconnect requires a signalling server location and a room name.
-var quickConnectMod = require('rtc-quickconnect');
-var quickConnectObj = quickConnectMod('https://switchboard.rtc.io/', { room: 'unicorn-lsdjfflajsdflkajdsklfjalsdj' })
+let quickConnectMod = require('rtc-quickconnect');
+let quickConnectObj = quickConnectMod('https://switchboard.rtc.io/', { room: meme_uuid })
   .on('call:started', function(id, pc, data) {
     console.log('we have a new connection to: ' + id);
 
