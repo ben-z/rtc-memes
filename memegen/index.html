@@ -51,6 +51,7 @@
 			var a = [];	
 			var i = Math.floor((Math.random() * 230) + 1);
 			a[0] = new Template("template/1.png", 1, 49, 146, 142, 84, "source/" + i + ".png");
+			//a[1] = new Template();
 			var template = a[0];
 			myCanvas(template);
 		}
@@ -60,12 +61,24 @@
 				var ctx = c.getContext("2d");
 				var imageObj1 = new Image();
 				var imageObj2 = new Image();
-				imageObj1.src = template.src1; 
+				var imageObj3 = new Image();
+				var imageObj4 = new Image();
+
+				var tempSrc = new Image();
+				
+				imageObj1.src = template.src1;
+				imageObj2.src = template.src2;
+				imageObj3.src = template.src3;
+				imageObj4.src = template.src4; 
+				tempSrc.src = template.templateSource;
+
 				imageObj1.onload = function() {
 					ctx.drawImage(imageObj1, template.x1, template.y1, template.width1, template.height1);
-					imageObj2.src = template.templateSource;
-					imageObj2.onload = function() {
-						ctx.drawImage(imageObj2, 0, 0, 450, 300);
+					ctx.drawImage(imageObj1, template.x1, template.y1, template.width2, template.height2);
+					ctx.drawImage(imageObj1, template.x1, template.y1, template.width3, template.height3);
+					ctx.drawImage(imageObj1, template.x1, template.y1, template.width4, template.height4);
+					tempSrc.onload = function() {
+						ctx.drawImage(tempSrc, 0, 0, 450, 300);
 						//var img = c.toDataURL("image/png");
 						//document.write('<img src="' + img + '" width="450" height="300"/>');
 					}
