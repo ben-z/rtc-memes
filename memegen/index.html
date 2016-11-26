@@ -11,8 +11,8 @@
 	<canvas id="myCanvas" width="450" height="300" style="border:1px solid #d3d3d3;"></canvas>
 	<p><button onclick="fook()">Generate</button></p>
 
-	<img id="blue" src="source/bluescreenofdeath.jpg" alt="bsod" width="120" height="70">
-	<img id="nut" src="source/nut-button.png" alt="bsod" width="120" height="70">
+	<img id="blue" src="source/22.png" alt="bsod" width="120" height="70">
+	<img id="nut" src="source/1.png" alt="bsod" width="120" height="70">
 
 	<script>
 		class Template {
@@ -48,8 +48,9 @@
 		}
 
 		function fook() {
-			var a = [];
-			a[0] = new Template("template/nut-button.png", 1, 49, 146, 142, 84, "source/bluescreenofdeath.jpg");
+			var a = [];	
+			var i = Math.floor((Math.random() * 230) + 1);
+			a[0] = new Template("template/1.png", 1, 49, 146, 142, 84, "source/" + i + ".png");
 			var template = a[0];
 			myCanvas(template);
 		}
