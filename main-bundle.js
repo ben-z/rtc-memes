@@ -44,7 +44,7 @@ function create_meme() {
   let uuid = guid();
   localStorage.setItem("rtc-meme-" + uuid, data);
 
-  let url = window.location.protocol + '//' + window.location.host + "/viewmeme.html?meme_uuid=" + uuid;
+  let url = window.location.protocol + '//' + window.location.host + window.location.pathname + "/viewmeme.html?meme_uuid=" + uuid;
 
   let meme_link = document.getElementById('meme-url');
   meme_link.href = url;
