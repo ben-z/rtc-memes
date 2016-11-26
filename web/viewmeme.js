@@ -15,7 +15,7 @@ function renderImage() {
 }
 
 let meme_uuid = getParameterByName('meme_uuid');
-let meme_base64 = localStorage.getItem(mem_uuid);
+let meme_base64 = localStorage.getItem('rtc-meme-' + meme_uuid);
 
 if (meme_base64) {
   renderImage();
