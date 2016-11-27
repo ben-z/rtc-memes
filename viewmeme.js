@@ -52,14 +52,14 @@ quickConnectObj.on('channel:opened:shared-text', function (id, channel) {
   if (meme_base64) {
     console.log('sending meme to another peer');
     seen_count += 1;
-    channel.send(JSON.stringify({'meme': meme_base64, 'count': seen_count}));
+    channel.send(JSON.stringify({'meme': encodeURIComponent(meme_base64), 'count': seen_count}));
   } else {
     // wait for message to arive
     channel.onmessage = function (evt) {
       console.log('received meme', evt.data);
       let data = JSON.parse(evt.data);
       console.log(data);
-      meme_base64 = data.meme;
+      meme_base64 = decodeURIComponent(data.meme);
       seen_count = data.count;
       renderImage();
     };
