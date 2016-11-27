@@ -57,8 +57,9 @@ quickConnectObj.on('channel:opened:shared-text', function (id, channel) {
     // wait for message to arive
     channel.onmessage = function (evt) {
       console.log('received meme', evt.data);
-      meme_base64 = evt.data.meme;
-      seen_count = evt.data.count;
+      let data = JSON.parse(evt.data);
+      meme_base64 = data.meme;
+      seen_count = data.count;
       renderImage();
     };
   }
