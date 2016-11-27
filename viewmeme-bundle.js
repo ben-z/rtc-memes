@@ -41720,6 +41720,7 @@ function renderImage() {
   image.src = meme_base64;
 
   document.getElementById('seen_count').innerHTML = "SEEN BY: " + seen_count;
+  console.log('seen_count', seen_count);
   console.log('Rendering image:', meme_base64);
 }
 
@@ -41728,6 +41729,7 @@ let meme_base64 = localStorage.getItem('rtc-meme-' + meme_uuid);
 let seen_count = 0;
 
 if (meme_base64) {
+  seen_count = 1;
   renderImage();
   localStorage.removeItem('rtc-meme-' + meme_uuid);
   console.log('removed rtc-meme-'+meme_uuid);
