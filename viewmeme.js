@@ -32,8 +32,6 @@ let firstString = true;
 
 if (meme_base64) {
   renderImage(meme_base64, seen_count);
-  localStorage.removeItem('rtc-meme-' + meme_uuid);
-  console.log('removed rtc-meme-'+meme_uuid);
 } else {
   meme_base64 = "";
 }
