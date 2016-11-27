@@ -196,3 +196,4 @@ function genMeme() {
 
 
 document.getElementById('genMeme').onclick = genMeme;
+genMeme();
