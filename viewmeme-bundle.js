@@ -42872,7 +42872,7 @@ function getParameterByName(name, url) {
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-function renderImage() {
+function renderImage(meme_base64) {
   let canvas = document.getElementById('meme-canvas');
   let ctx = canvas.getContext('2d');
 
@@ -42893,7 +42893,7 @@ let seen_count = 0;
 
 if (meme_base64) {
   seen_count = 1;
-  renderImage();
+  renderImage(meme_base64);
   localStorage.removeItem('rtc-meme-' + meme_uuid);
   console.log('removed rtc-meme-'+meme_uuid);
 }
@@ -42919,8 +42919,8 @@ quickConnectObj.on('channel:opened:shared-text', function (id, channel) {
     // wait for message to arive
     channel.onmessage = function (evt) {
       console.log('received meme', evt.data);
-      meme_base64 = evt.data.meme;
-      renderImage();
+      meme_base64 = evt.data;
+      renderImage(meme_base64);
     };
   }
 });
