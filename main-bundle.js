@@ -17,7 +17,7 @@ canvas.addEventListener("mousemove", function(e){
   var mY = e.clientY - $("#meme-canvas").offset().top;
   
   ctx.fillStyle = "green";
-  ctx.fillRect(mX, mY, 10, 10);
+  ctx.fillRect(mX - 5, mY - 5, 10, 10);
 }, false);
 
 canvas.addEventListener("mouseup", function(){
