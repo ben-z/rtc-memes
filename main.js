@@ -100,25 +100,12 @@ function myCanvas(template) {
   tempSrc.src = template.templateSource;
 
   tempSrc.onload = function() {
-    imageObj1.onload = function() {
-      ctx.drawImage(imageObj1, template.x1, template.y1, template.width1, template.height1);
-      ctx.drawImage(tempSrc, 0, 0, 450, 300);
-    };
-
-    imageObj2.onload = function() {
-      ctx.drawImage(imageObj2, template.x2, template.y2, template.width2, template.height2);
-      ctx.drawImage(tempSrc, 0, 0, 450, 300);
-    };
-
-    imageObj3.onload = function() {
-      ctx.drawImage(imageObj3, template.x3, template.y3, template.width3, template.height3);
-      ctx.drawImage(tempSrc, 0, 0, 450, 300);
-    };
-
-    imageObj4.onload = function() { 
-      ctx.drawImage(imageObj4, template.x4, template.y4, template.width4, template.height4);
-      ctx.drawImage(tempSrc, 0, 0, 450, 300);
-    };
+    console.log('temp loaded');
+    ctx.drawImage(imageObj1, template.x1, template.y1, template.width1, template.height1);
+    ctx.drawImage(imageObj2, template.x2, template.y2, template.width2, template.height2);
+    ctx.drawImage(imageObj3, template.x3, template.y3, template.width3, template.height3);
+    ctx.drawImage(imageObj4, template.x4, template.y4, template.width4, template.height4);
+    ctx.drawImage(tempSrc, 0, 0, 450, 300);
   };
 
 }
