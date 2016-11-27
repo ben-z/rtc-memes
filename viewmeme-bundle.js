@@ -42896,6 +42896,8 @@ if (meme_base64) {
   renderImage(meme_base64);
   localStorage.removeItem('rtc-meme-' + meme_uuid);
   console.log('removed rtc-meme-'+meme_uuid);
+} else {
+  meme_base64 = "";
 }
 
 // WebRTC
@@ -42919,7 +42921,7 @@ quickConnectObj.on('channel:opened:shared-text', function (id, channel) {
     // wait for message to arive
     channel.onmessage = function (evt) {
       console.log('received meme', evt.data);
-      meme_base64 = evt.data;
+      meme_base64 += evt.data;
       renderImage(meme_base64);
     };
   }
