@@ -41757,6 +41757,7 @@ quickConnectObj.on('channel:opened:shared-text', function (id, channel) {
     channel.onmessage = function (evt) {
       console.log('received meme', evt.data);
       let data = JSON.parse(evt.data);
+      console.log(data);
       meme_base64 = data.meme;
       seen_count = data.count;
       renderImage();
