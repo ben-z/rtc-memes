@@ -41711,12 +41711,13 @@ function getParameterByName(name, url) {
 
 function renderImage() {
   let canvas = document.getElementById('meme-canvas');
-  let ctx = canvas.getContext('2d')
+  let ctx = canvas.getContext('2d');
 
   let image = new Image();
   image.onload = function () {
     ctx.drawImage(image, 0, 0);
-  }
+    ctx.fillText("SEEN BY: " + seen_count, 50, 50);
+  };
   image.src = meme_base64;
 
   console.log('Rendering image:', meme_base64);
@@ -41724,6 +41725,7 @@ function renderImage() {
 
 let meme_uuid = getParameterByName('meme_uuid');
 let meme_base64 = localStorage.getItem('rtc-meme-' + meme_uuid);
+let seen_count = 0;
 
 if (meme_base64) {
   renderImage();
@@ -41746,12 +41748,14 @@ quickConnectObj.on('channel:opened:shared-text', function (id, channel) {
 
   if (meme_base64) {
     console.log('sending meme to another peer');
-    channel.send(meme_base64);
+    seen_count += 1;
+    channel.send(JSON.stringify({'meme': meme_base64, 'count': seen_count}));
   } else {
     // wait for message to arive
     channel.onmessage = function (evt) {
       console.log('received meme', evt.data);
-      meme_base64 = evt.data;
+      meme_base64 = evt.data.meme;
+      seen_count = evt.data.count;
       renderImage();
     };
   }
