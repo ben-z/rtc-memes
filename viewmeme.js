@@ -17,10 +17,10 @@ function renderImage() {
   let image = new Image();
   image.onload = function () {
     ctx.drawImage(image, 0, 0);
-    ctx.fillText("SEEN BY: " + seen_count, 50, 50);
   };
   image.src = meme_base64;
 
+  document.getElementById('seen_count').innerHTML = "SEEN BY: " + seen_count;
   console.log('Rendering image:', meme_base64);
 }
 
