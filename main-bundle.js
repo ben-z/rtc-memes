@@ -50,6 +50,7 @@ function create_meme() {
   meme_link.innerHTML = url;
   console.log(url);
 }
+
 class Template {
   constructor(templateSource, numOfSource, x1 = 0, y1 = 0, width1 = 0, height1 = 0, src1 = "",
 	      x2 = 0, y2 = 0, width2 = 0, height2 = 0, src2 = "",
@@ -139,10 +140,7 @@ function genMeme() {
   a[4] = new Template("template/5.png", 1, 275, 60, 125, 125, "source/" + i + ".png");
   a[5] = new Template("template/6.png", 1, 215, 150, 200, 145, "source/" + j + ".png");
   a[6] = new Template("template/7.png", 1, 158, 188, 102, 98, "source/" + i + ".png");
-  // 6 image
-  //a[7] = new Template("template/8.png", 1, 215, 150, 200, 145, "source/" + i + ".png");
   a[7] = new Template("template/9.png", 1, 0, 0, 450, 209, "source/" + j + ".png");
-
   a[8] = new Template("template/10.png", 1, 253, 217, 145, 69, "source/" + i + ".png");
   a[9] = new Template("template/11.png", 1, 450/2 - 10, 0, 234, 158, "source/" + i + ".png");
   a[10] = new Template("template/12.png", 1, 21, 62, 415, 220, "source/" + i + ".png");
@@ -158,18 +156,14 @@ function genMeme() {
 
   a[16] = new Template("template/18.png", 1, 199, 0, 250, 255, "source/" + j + ".png");
   a[17] = new Template("template/19.png", 1, 45, 90, 350, 180, "source/" + i + ".png");
-
   a[18] = new Template("template/20.png", 1, 223, 147, 225, 150, "source/" + i + ".png");
-
   a[19] = new Template("template/21.png", 1, 45, 70, 340, 160, "source/" + i + ".png");
   a[20] = new Template("template/22.png", 1, 10, 70, 420, 210, "source/" + i + ".png");
-
   a[21] = new Template("template/23.png", 1, 227, 210, 110, 90, "source/" + i + ".png",
 		       340, 210, 110, 90, "source/" + j + ".png");
+
   a[22] = new Template("template/24.png", 1, 20, 70, 400, 200, "source/" + i + ".png");
-
   a[23] = new Template("template/25.png", 1, 0, 140, 450, 160, "source/" + i + ".png");
-
   a[24] = new Template("template/26.png", 1, 21, 127, 200, 160, "source/" + i + ".png",
 		       231, 127, 210, 160, "source/" + j + ".png");
   a[25] = new Template("template/27.png", 1, 20, 90, 410, 200, "source/" + i + ".png");
@@ -192,9 +186,9 @@ function genMeme() {
   a[39] = new Template("template/41.png", 1, 0, 300/2, 265, 300/2, "source/" + i + ".png");
   a[40] = new Template("template/42.png", 1, 0, 300/3, 450, 300/3, "source/" + i + ".png");
   a[41] = new Template("template/43.png", 2, 0, 0, 450, 300/4 + 3 - 3, "source/" + i + ".png", 
-                       0	, 300*2/4, 450, 300/4, "source/" + j + ".png");
+                                             0, 300*2/4, 450, 300/4, "source/" + j + ".png");
   
-  
+  //console.log(n);
   var template = a[n];
 
   myCanvas(template);

@@ -20,8 +20,8 @@ function renderImage() {
   };
   image.src = meme_base64;
 
-  document.getElementById('seen_count').innerHTML = "SEEN BY: " + seen_count;
-  console.log('seen_count', seen_count);
+  // document.getElementById('seen_count').innerHTML = "SEEN BY: " + seen_count;
+  // xconsole.log('seen_count', seen_count);
   console.log('Rendering image:', meme_base64);
 }
 
@@ -52,15 +52,12 @@ quickConnectObj.on('channel:opened:shared-text', function (id, channel) {
   if (meme_base64) {
     console.log('sending meme to another peer');
     seen_count += 1;
-    channel.send(JSON.stringify({'meme': encodeURIComponent(meme_base64), 'count': seen_count}));
+    channel.send(JSON.stringify({'meme': meme_base64}));
   } else {
     // wait for message to arive
     channel.onmessage = function (evt) {
       console.log('received meme', evt.data);
-      let data = JSON.parse(evt.data);
-      console.log(data);
-      meme_base64 = decodeURIComponent(data.meme);
-      seen_count = data.count;
+      meme_base64 = evt.data.meme;
       renderImage();
     };
   }
