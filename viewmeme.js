@@ -10,7 +10,7 @@ function getParameterByName(name, url) {
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-function renderImage(meme_base64) {
+function renderImage(meme_base64, seen_count) {
   let canvas = document.getElementById('meme-canvas');
   let ctx = canvas.getContext('2d');
 
@@ -20,7 +20,7 @@ function renderImage(meme_base64) {
   };
   image.src = meme_base64;
 
-  // document.getElementById('seen_count').innerHTML = "SEEN BY: " + seen_count;
+  document.getElementById('seen_count').innerHTML = "SEEN BY: " + seen_count;
   // xconsole.log('seen_count', seen_count);
   console.log('Rendering image:', meme_base64);
 }
@@ -28,10 +28,10 @@ function renderImage(meme_base64) {
 let meme_uuid = getParameterByName('meme_uuid');
 let meme_base64 = localStorage.getItem('rtc-meme-' + meme_uuid);
 let seen_count = 0;
+let firstString = true;
 
 if (meme_base64) {
-  seen_count = 1;
-  renderImage(meme_base64);
+  renderImage(meme_base64, seen_count);
   localStorage.removeItem('rtc-meme-' + meme_uuid);
   console.log('removed rtc-meme-'+meme_uuid);
 } else {
@@ -54,13 +54,21 @@ quickConnectObj.on('channel:opened:shared-text', function (id, channel) {
   if (meme_base64) {
     console.log('sending meme to another peer');
     seen_count += 1;
-    channel.send(meme_base64);
+    channel.send(seen_count + ':' +meme_base64);
   } else {
     // wait for message to arive
     channel.onmessage = function (evt) {
-      console.log('received meme', evt.data);
-      meme_base64 += evt.data;
-      renderImage(meme_base64);
+      console.log('received meme');
+      if (firstString) {
+        var separator_index = evt.data.indexOf(':');
+        seen_count = Number(evt.data.substr(0, separator_index));
+        meme_base64 += evt.data.substr(separator_index + 1);
+        firstString = false;
+      } else {
+        meme_base64 += evt.data;
+      }
+      console.log("seen by", seen_count)
+      renderImage(meme_base64, seen_count);
     };
   }
 });
