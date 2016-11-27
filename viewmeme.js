@@ -52,7 +52,7 @@ quickConnectObj.on('channel:opened:shared-text', function (id, channel) {
   if (meme_base64) {
     console.log('sending meme to another peer');
     seen_count += 1;
-    channel.send(JSON.stringify({'meme': meme_base64}));
+    channel.send(meme_base64);
   } else {
     // wait for message to arive
     channel.onmessage = function (evt) {
